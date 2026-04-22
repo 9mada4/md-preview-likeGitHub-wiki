@@ -1,0 +1,51 @@
+{
+  "name": "md-preview-like-github-wiki",
+  "version": "0.1.0",
+  "description": "GitHub Wiki style Markdown preview web app + reusable renderer module",
+  "type": "module",
+  "main": "dist/lib/index.umd.js",
+  "module": "dist/lib/index.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/lib/index.es.js",
+      "require": "./dist/lib/index.umd.js"
+    },
+    "./style.css": "./dist/lib/style.css"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "npm run build:app && npm run build:lib",
+    "build:app": "vite build",
+    "build:lib": "vite build --config vite.lib.config.ts",
+    "check": "tsc --noEmit",
+    "preview": "vite preview"
+  },
+  "keywords": [
+    "markdown",
+    "github",
+    "wiki",
+    "preview",
+    "gfm"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "github-markdown-css": "^5.9.0",
+    "rehype-raw": "^7.0.0",
+    "rehype-sanitize": "^6.0.0",
+    "rehype-slug": "^6.0.0",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "unified": "^11.0.5",
+    "unist-util-visit": "^5.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "^5.9.3",
+    "vite": "^8.0.9"
+  }
+}
