@@ -8,6 +8,9 @@
 - [ ] テーブル
 - [ ] 打ち消し線
 
+> [!NOTE]
+> 画像のようなGitHubアラート表現を再現します。
+
 | Feature | Status |
 | --- | --- |
 | Table | Works |
@@ -33,4 +36,3 @@ console.log(user);
 ### Link
 
 - [GitHub Flavored Markdown Spec](https://github.github.com/gfm/)
-

@@ -24,6 +24,10 @@
   overflow: auto;
 }
 
+.markdown-body.gh-wiki-body .markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+}
+
 @media (max-width: 767px) {
   .markdown-body.gh-wiki-body {
     padding: 1rem;

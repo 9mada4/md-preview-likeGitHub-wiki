@@ -27,6 +27,8 @@ GitHub Wiki 風の見た目で Markdown を表示する Web アプリです。
 - 左にエディタ、右に GitHub Wiki 風プレビュー
 - `rehype-sanitize` によるサニタイズ（XSS対策）
 - `github-markdown-css` による見た目再現
+- GitHub Alerts 記法（`[!NOTE]` など5種類）対応  
+  参考: [GitHubでQiitaの:::noteみたいな強調をする - Qiita](https://qiita.com/lobmto/items/d02532134782f34c0e2f)
 - 他アプリに組み込みやすい再利用 API:
   - `renderGitHubWikiMarkdown(markdown, options)`
   - `mountGitHubWikiPreview(element, markdown, options)`

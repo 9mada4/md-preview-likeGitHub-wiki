@@ -2,6 +2,7 @@ import rehypeRaw from "rehype-raw";
 import rehypeSanitize, { defaultSchema } from "rehype-sanitize";
 import rehypeSlug from "rehype-slug";
 import rehypeStringify from "rehype-stringify";
+import remarkAlert from "remark-github-blockquote-alert";
 import remarkGfm from "remark-gfm";
 import remarkParse from "remark-parse";
 import remarkRehype from "remark-rehype";
@@ -46,14 +47,21 @@ const sanitizeSchema: any = {
   tagNames: [
     ...(defaultSchema.tagNames || []),
     "details",
+    "path",
     "summary",
     "kbd",
     "sub",
-    "sup"
+    "sup",
+    "svg"
   ],
   attributes: {
     ...(defaultSchema.attributes || {}),
     a: [...(defaultSchema.attributes?.a || []), "className", "target", "rel"],
+    blockquote: [
+      ...(defaultSchema.attributes?.blockquote || []),
+      "className",
+      "dir"
+    ],
     code: [...(defaultSchema.attributes?.code || []), "className"],
     div: [...(defaultSchema.attributes?.div || []), "className"],
     h1: [...(defaultSchema.attributes?.h1 || []), "id"],
@@ -71,8 +79,18 @@ const sanitizeSchema: any = {
       "disabled"
     ],
     li: [...(defaultSchema.attributes?.li || []), "className"],
+    p: [...(defaultSchema.attributes?.p || []), "className", "dir"],
+    path: [...(defaultSchema.attributes?.path || []), "d"],
     pre: [...(defaultSchema.attributes?.pre || []), "className"],
     span: [...(defaultSchema.attributes?.span || []), "className"],
+    svg: [
+      ...(defaultSchema.attributes?.svg || []),
+      "className",
+      "viewBox",
+      "width",
+      "height",
+      "ariaHidden"
+    ],
     table: [...(defaultSchema.attributes?.table || []), "className"],
     td: [...(defaultSchema.attributes?.td || []), "className", "align"],
     th: [...(defaultSchema.attributes?.th || []), "className", "align"],
@@ -93,6 +111,7 @@ export async function renderGitHubWikiMarkdown(
   const processor = unified()
     .use(remarkParse)
     .use(remarkGfm)
+    .use(remarkAlert)
     .use(remarkRehype, { allowDangerousHtml: true })
     .use(rehypeRaw);
 
@@ -118,4 +137,3 @@ export async function mountGitHubWikiPreview(
   element.classList.add("markdown-body", "gh-wiki-body");
   element.innerHTML = await renderGitHubWikiMarkdown(markdown, options);
 }
-
